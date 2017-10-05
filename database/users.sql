@@ -1,0 +1,34 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS propic;
+DROP TABLE IF EXISTS friendStatus;
+
+
+
+
+
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    first VARCHAR(200),
+    last VARCHAR(200),
+    email VARCHAR(300) NOT NULL UNIQUE,
+    password VARCHAR(200) NOT NULL,
+    bio VARCHAR(300)
+
+);
+
+CREATE TABLE propic (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    image VARCHAR(300) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+CREATE TABLE friendStatus (
+    id SERIAL PRIMARY KEY,
+    sender_id INTEGER NOT NULL,
+    rec_id INTEGER NOT NULL,
+    status INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
